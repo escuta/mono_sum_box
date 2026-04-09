@@ -1,23 +1,21 @@
 # Passive Mono Summing Box
 
-A passive stereo-to-mono summing box for analogue audio, designed for insertion between a step-up transformer (SUT) and a phono stage input.
+A passive stereo-to-mono summing box for analogue audio, designed for insertion between a phono source and a phono stage input.
 
 ## Use Case
 
-Denon DL-103 MC cartridge → Rothwell MCL SUT → **this box** → integrated amp phono input
-
-Designed for a system where the amplifier has no mono switch. Allows clean switching between stereo and mono playback on demand, with zero crosstalk in stereo mode.
+For systems where the amplifier or preamplifier has no mono switch. Allows clean switching between stereo and mono playback on demand, with zero crosstalk in stereo mode. Suitable for insertion at line level after a step-up transformer, or directly between any line-level source and input.
 
 ## Signal Chain
 
 ```
-Turntable (DL-103) → Rothwell MCL SUT → [this box] → Integrated amp phono input
+Phono source → [this box] → Phono stage / amplifier input
 ```
 
 ## Earth/Ground Chain
 
 ```
-Turntable earth wire → Earth post on box → wire to SUT ground terminal
+Turntable earth wire → Earth post on box → wire to phono stage ground terminal
 ```
 
 The aluminium enclosure is part of the ground — all RCA shields, the earth post and the summing node share a common ground bus inside the box.
@@ -69,9 +67,3 @@ Centre pins (COM1, COM2) are the commons. Outer pins are throws — one side act
 |------|-------------|
 | `mono_sum_mts202_earth.svg` | Circuit schematic with earth post |
 | `README.md` | This file |
-
-## Context
-
-This box was designed as part of a mono vinyl playback project. The owner's nephew uses a Denon DL-103 with a Rothwell MCL SUT into an integrated amplifier with no mono switch. The box provides a clean, passive mono sum with zero crosstalk in stereo mode, switchable on demand.
-
-Related project: a 3-position speaker selector box for the owner's own system (Quad 34 preamp / dual Quad 303 power amps / Tannoy System 12 DMT II speakers).
