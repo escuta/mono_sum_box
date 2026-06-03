@@ -18,52 +18,68 @@ Phono source → [this box] → Phono stage / amplifier input
 Turntable earth wire → Earth post on box → wire to phono stage ground terminal
 ```
 
-The aluminium enclosure is part of the ground — all RCA shields, the earth post and the summing node share a common ground bus inside the box.
+The earth post is optional — the turntable earth wire can bypass the box entirely and connect directly to the phono stage or SUT ground terminal if preferred. The aluminium enclosure is part of the ground — all RCA shields, the earth post and R3 summing node share a common ground bus inside the box.
 
 ## Circuit Description
 
-A passive resistor summing network switched in and out of circuit by a DPDT toggle switch (MTS-202, ON-ON, 6 pins, wired as DPST ON-OFF).
+A passive resistor summing network switched in and out of circuit by a 4PDT toggle switch (MTS-402, ON-ON, 12 pins). Uses a verified circuit topology ensuring the summing network is completely disconnected in stereo mode — no loading of the stereo signal whatsoever.
 
-- **Stereo position (switch pos 1):** both poles connect to unused throws (N/C). Resistors are completely out of circuit. Clean stereo passthrough, zero crosstalk.
-- **Mono position (switch pos 2):** both poles connect to the active throws, routing the left and right hot lines through 10kΩ resistors to a common summing node connected to ground. Both output channels carry the identical L+R summed mono signal. A 6dB level drop occurs — compensate with volume control.
+- **Stereo position (switch pos 1):** L input passes directly to L output, R input passes directly to R output. Summing network completely disconnected. Zero crosstalk.
+- **Mono position (switch pos 2):** L input passes through R1 and R input through R2 to a common summing node. R3 connects the summing node to ground for correct impedance. Both L and R outputs receive the identical summed mono signal.
 
 ## Components
 
 | Component | Value/Type | Qty |
 |-----------|-----------|-----|
 | RCA panel mount sockets | — | 4 |
-| Resistors | 10kΩ | 2 |
-| Toggle switch | MTS-202 DPDT ON-ON, 6 pins | 1 |
+| Resistor R1 | 10kΩ 1% | 1 |
+| Resistor R2 | 10kΩ 1% | 1 |
+| Resistor R3 | 20kΩ | 1 |
+| Toggle switch | MTS-402 4PDT ON-ON, 12 pins | 1 |
 | Earth/ground binding post | — | 1 |
-| Aluminium enclosure | Hammond 1590B style, 112×60×31mm | 1 |
+| Aluminium enclosure | 100×56×56mm | 1 |
+
+Note: R1 and R2 should be 1% tolerance for good left/right channel matching.
 
 ## Enclosure Layout
 
-- **Connections face**: L IN, R IN, L OUT, R OUT (RCA), Earth post
-- **Switch face**: MTS-202 toggle switch (opposite face)
+- **Connections face**: L IN, R IN, Earth post (bottom row) / L OUT, R OUT, Switch (top row)
+- All connections and switch on one face
 
-## Switch Wiring — MTS-202 Pin Identification
+## Switch Wiring — MTS-402 Pin Layout
 
-The MTS-202 has 6 pins arranged in two rows of 3:
+The MTS-402 has 12 pins in three rows of four:
 
 ```
-[T1b]  [COM1]  [T1a]   <- Pole 1 (Left channel)
-[T2b]  [COM2]  [T2a]   <- Pole 2 (Right channel)
+[ T1b  T2b  T3b  T4b ]   <- throws, position 2 (mono)
+[ C1   C2   C3   C4  ]   <- commons (centre row)
+[ T1a  T2a  T3a  T4a ]   <- throws, position 1 (stereo)
 ```
-
-Centre pins (COM1, COM2) are the commons. Outer pins are throws — one side active in pos 1, other side active in pos 2. Use a multimeter in continuity mode to identify which throw is active in which position before soldering.
 
 **Connect:**
-- Signal tap from L hot line → COM1
-- Signal tap from R hot line → COM2
-- COM1 active throw (mono position) → R1 → summing node
-- COM2 active throw (mono position) → R2 → summing node
-- Summing node → ground bus
-- Leave the two stereo-position throws completely unconnected (N/C)
+- C1 → L input hot
+- C2 → R input hot
+- C3 → L output hot
+- C4 → R output hot
+- T1a → L output hot (stereo: L in → L out)
+- T2a → R output hot (stereo: R in → R out)
+- T3a → L input hot (stereo: L out tied back to L in)
+- T4a → R input hot (stereo: R out tied back to R in)
+- T1b → R1 → summing node (mono: L in through resistor)
+- T2b → R2 → summing node (mono: R in through resistor)
+- T3b → summing node (mono: L out receives summed signal)
+- T4b → summing node (mono: R out receives summed signal)
+- Summing node → R3 → ground bus
+
+Use a multimeter in continuity mode to confirm which throws are active in which position before soldering.
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `mono_sum_mts202_earth.svg` | Circuit schematic with earth post |
+| `mono_sum_mts402.svg` | Circuit schematic |
 | `README.md` | This file |
+
+## Reference
+
+Circuit topology based on verified passive stereo/mono summing designs. The 4PDT switch ensures complete isolation of the summing network in stereo mode, avoiding any loading of the stereo signal from the resistor network.
