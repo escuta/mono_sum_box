@@ -35,8 +35,8 @@ At the summing node the following wires meet:
 - Free leg of R1 — carries the L channel signal (after passing through the 10kΩ resistor from T1b)
 - Free leg of R2 — carries the R channel signal (after passing through the 10kΩ resistor from T2b)
 - One leg of R3 — the other leg of R3 goes to the ground bus, setting the output impedance
-- Wire to T3b — delivers the summed signal to the L output hot pin
-- Wire to T4b — delivers the summed signal to the R output hot pin
+- Wire to T3b — the summed signal travels from the node through T3b to C3, which is the L output hot pin
+- Wire to T4b — the summed signal travels from the node through T4b to C4, which is the R output hot pin
 
 The L and R signals combine at this junction. R3 to ground does not pull the node to ground level — it simply provides an impedance reference. The node itself sits at the combined L+R signal voltage.
 
@@ -94,19 +94,25 @@ T1a  T2a  T3a  T4a   <- bottom row (stereo, switch up)
 ```
 
 **Connect:**
+
+*Commons — always connected to their respective signal points:*
 - C1 → L input hot
 - C2 → R input hot
 - C3 → L output hot
 - C4 → R output hot
-- T1a → L output hot (stereo: L in → L out)
-- T2a → R output hot (stereo: R in → R out)
-- T3a → L input hot (stereo: L out tied back to L in)
-- T4a → R input hot (stereo: R out tied back to R in)
-- T1b → R1 (10kΩ) → summing node (mono: L in through resistor)
-- T2b → R2 (10kΩ) → summing node (mono: R in through resistor)
-- T3b → summing node (mono: L out receives summed signal)
-- T4b → summing node (mono: R out receives summed signal)
-- Summing node → R3 (20kΩ) → ground bus
+
+*Bottom throws T-a — active in stereo (switch up):*
+- T1a → L output hot (L input signal passes straight through to L output)
+- T2a → R output hot (R input signal passes straight through to R output)
+- T3a → L input hot (L output tied back to L input, completing the direct path)
+- T4a → R input hot (R output tied back to R input, completing the direct path)
+
+*Top throws T-b — active in mono (switch down):*
+- T1b → R1 (10kΩ) → summing node (L input signal enters summing network)
+- T2b → R2 (10kΩ) → summing node (R input signal enters summing network)
+- T3b → summing node (summed signal travels from node → T3b → C3 → L output hot)
+- T4b → summing node (summed signal travels from node → T4b → C4 → R output hot)
+- Summing node → R3 (20kΩ) → ground bus (sets output impedance)
 
 **Ground bus:**
 Run a single wire along the inside of the enclosure daisy-chaining all four RCA socket shields. Also connect to this bus: earth post, and the free leg of R3. Note that R3 connects the summing node to ground but the summing node itself is not part of the ground bus — it carries the audio signal.
