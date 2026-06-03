@@ -43,8 +43,30 @@ Note: R1 and R2 should be 1% tolerance for good left/right channel matching.
 
 ## Enclosure Layout
 
-- **Connections face**: L IN, R IN, Earth post (bottom row) / L OUT, R OUT, Switch (top row)
-- All connections and switch on one face
+**Enclosure:** 100×56×56mm diecast aluminium. All connections on one 56×56mm face (rear). Switch on opposite 56×56mm face (front).
+
+### Rear panel — 56×56mm
+
+Four RCA sockets at corners, earth post at dead centre:
+
+| Component | X from left | Y from top |
+|-----------|-------------|------------|
+| L OUT (top left) | 13mm | 13mm |
+| R OUT (top right) | 43mm | 13mm |
+| Earth post (centre) | 28mm | 28mm |
+| L IN (bottom left) | 13mm | 43mm |
+| R IN (bottom right) | 43mm | 43mm |
+
+- RCA holes: **8–9mm diameter**
+- Earth post hole: **6mm diameter**
+- Pilot drill at 3mm first, centre punch each position before drilling
+
+### Front panel — 56×56mm
+
+Single hole at dead centre (intersection of panel diagonals):
+
+- Switch hole: **6–7mm diameter** (MTS-402 shaft)
+- Draw diagonals corner to corner, punch at intersection
 
 ## Switch Wiring — MTS-402 Pin Layout
 
