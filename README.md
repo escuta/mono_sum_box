@@ -24,8 +24,8 @@ The earth post is optional — the turntable earth wire can bypass the box entir
 
 A passive resistor summing network switched in and out of circuit by a 4PDT toggle switch (MTS-402, ON-ON, 12 pins). Uses a verified circuit topology ensuring the summing network is completely disconnected in stereo mode — no loading of the stereo signal whatsoever.
 
-- **Stereo position (switch pos 1):** L input passes directly to L output, R input passes directly to R output. Summing network completely disconnected. Zero crosstalk.
-- **Mono position (switch pos 2):** L input passes through R1 and R input through R2 to a common summing node. R3 connects the summing node to ground for correct impedance. Both L and R outputs receive the identical summed mono signal.
+- **Stereo position (switch up):** L input passes directly to L output, R input passes directly to R output. Summing network completely disconnected. Zero crosstalk.
+- **Mono position (switch down):** L input passes through R1 and R input through R2 to a common summing node. R3 connects the summing node to ground for correct impedance. Both L and R outputs receive the identical summed mono signal.
 
 ## Components
 
@@ -70,12 +70,12 @@ Single hole at dead centre (intersection of panel diagonals):
 
 ## Switch Wiring — MTS-402 Pin Layout
 
-The MTS-402 has 12 pins in three rows of four:
+The MTS-402 has 12 pins in three rows of four. The tab on the mounting washer faces upward. With tab up:
 
 ```
-[ T1b  T2b  T3b  T4b ]   <- throws, position 2 (mono)
-[ C1   C2   C3   C4  ]   <- commons (centre row)
-[ T1a  T2a  T3a  T4a ]   <- throws, position 1 (stereo)
+T1b  T2b  T3b  T4b   <- top row    (mono, switch down)
+C1   C2   C3   C4    <- centre row (commons)
+T1a  T2a  T3a  T4a   <- bottom row (stereo, switch up)
 ```
 
 **Connect:**
@@ -87,13 +87,14 @@ The MTS-402 has 12 pins in three rows of four:
 - T2a → R output hot (stereo: R in → R out)
 - T3a → L input hot (stereo: L out tied back to L in)
 - T4a → R input hot (stereo: R out tied back to R in)
-- T1b → R1 → summing node (mono: L in through resistor)
-- T2b → R2 → summing node (mono: R in through resistor)
+- T1b → R1 (10kΩ) → summing node (mono: L in through resistor)
+- T2b → R2 (10kΩ) → summing node (mono: R in through resistor)
 - T3b → summing node (mono: L out receives summed signal)
 - T4b → summing node (mono: R out receives summed signal)
-- Summing node → R3 → ground bus
+- Summing node → R3 (20kΩ) → ground bus
 
-Use a multimeter in continuity mode to confirm which throws are active in which position before soldering.
+**Ground bus:**
+Run a single wire along the inside of the enclosure daisy-chaining all four RCA socket shields. Also connect to this bus: earth post, and the free leg of R3. This forms the common ground for the entire circuit.
 
 ## Files
 
