@@ -18,14 +18,29 @@ Phono source → [this box] → Phono stage / amplifier input
 Turntable earth wire → Earth post on box → wire to phono stage ground terminal
 ```
 
-The earth post is optional — the turntable earth wire can bypass the box entirely and connect directly to the phono stage or SUT ground terminal if preferred. The aluminium enclosure is part of the ground — all RCA shields, the earth post and R3 summing node share a common ground bus inside the box.
+The earth post is optional — the turntable earth wire can bypass the box entirely and connect directly to the phono stage or SUT ground terminal if preferred. The aluminium enclosure is part of the ground — all RCA shields and the earth post share a common ground bus inside the box.
 
 ## Circuit Description
 
 A passive resistor summing network switched in and out of circuit by a 4PDT toggle switch (MTS-402, ON-ON, 12 pins). Uses a verified circuit topology ensuring the summing network is completely disconnected in stereo mode — no loading of the stereo signal whatsoever.
 
 - **Stereo position (switch up):** L input passes directly to L output, R input passes directly to R output. Summing network completely disconnected. Zero crosstalk.
-- **Mono position (switch down):** L input passes through R1 and R input through R2 to a common summing node. R3 connects the summing node to ground for correct impedance. Both L and R outputs receive the identical summed mono signal.
+- **Mono position (switch down):** L input passes through R1 and R input through R2 to a common summing node. R3 connects the summing node to ground for correct output impedance. Both L and R outputs receive the identical summed mono signal.
+
+### What is the summing node?
+
+The summing node is not a component — it is a physical junction point in the wiring where several wires are soldered together. It carries the combined L+R audio signal and is at audio signal potential, not at ground.
+
+At the summing node the following wires meet:
+- Free leg of R1 — carries the L channel signal (after passing through the 10kΩ resistor from T1b)
+- Free leg of R2 — carries the R channel signal (after passing through the 10kΩ resistor from T2b)
+- One leg of R3 — the other leg of R3 goes to the ground bus, setting the output impedance
+- Wire to T3b — delivers the summed signal to the L output hot pin
+- Wire to T4b — delivers the summed signal to the R output hot pin
+
+The L and R signals combine at this junction. R3 to ground does not pull the node to ground level — it simply provides an impedance reference. The node itself sits at the combined L+R signal voltage.
+
+In practice the summing node is simply a short length of wire with all the above connections soldered to it, or a small tag strip used as a convenient junction point.
 
 ## Components
 
@@ -94,7 +109,7 @@ T1a  T2a  T3a  T4a   <- bottom row (stereo, switch up)
 - Summing node → R3 (20kΩ) → ground bus
 
 **Ground bus:**
-Run a single wire along the inside of the enclosure daisy-chaining all four RCA socket shields. Also connect to this bus: earth post, and the free leg of R3. This forms the common ground for the entire circuit.
+Run a single wire along the inside of the enclosure daisy-chaining all four RCA socket shields. Also connect to this bus: earth post, and the free leg of R3. Note that R3 connects the summing node to ground but the summing node itself is not part of the ground bus — it carries the audio signal.
 
 ## Files
 
